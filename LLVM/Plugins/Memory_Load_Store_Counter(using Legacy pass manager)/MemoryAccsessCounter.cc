@@ -49,6 +49,7 @@ NameSpace
     GlobalVariable*             m_write_str_var;
     char*                       m_addr_load_str;
     char*                       m_addr_write_str;
+    char*                       m_function_name;
 
 };
 //===============================IMPL===========================================
@@ -109,7 +110,9 @@ void Memory_access_counter::begin_profiling(Module &MOD)
 {
   for(Function &F : MOD) {
         for(BasicBlock &B : F) {
-          for(Instruction &I : B) {
+          for(Instruction &I : B)
+          {
+            m_function_name=F.getName();
             LoadInst * load = nullptr;
             StoreInst * store = nullptr;
 
@@ -153,7 +156,7 @@ void Memory_access_counter::begin_profiling(Module &MOD)
 //------------------------------------------------------------------------------
 void Memory_access_counter::print_the_result(int &loads,int &writes)
 {
-  errs() <<"*************************************************\n";
+  errs() <<"*******************"<<<m_function_name<"*************************\n";
   errs() <<"**"<<loads<<"memory loads has beenn detected\n";
   errs() <<"**"<<writes<<"memory writes has beenn detected\n";
   errs() <<"-------------------------------------------------\n";

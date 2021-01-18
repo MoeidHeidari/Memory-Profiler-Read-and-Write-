@@ -1,0 +1,182 @@
+BB: -2
+
+----------------------------------------------------------------
+
+BB: 0
+(insn/f 52 5 53 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) "tests/test.cc":1:27 -1
+     (nil))
+(insn/f 53 52 54 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) "tests/test.cc":1:27 -1
+     (nil))
+(insn 54 53 55 (set (mem/v:BLK (scratch:DI) [0  A8])
+        (unspec:BLK [
+                (mem/v:BLK (scratch:DI) [0  A8])
+            ] UNSPEC_MEMORY_BLOCKAGE)) "tests/test.cc":1:27 -1
+     (nil))
+(insn 2 55 3 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -24 [0xffffffffffffffe8])) [2 b+0 S8 A64])
+        (reg:DI 5 di [ b ])) "tests/test.cc":1:27 66 {*movdi_internal}
+     (nil))
+(insn 3 2 4 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -32 [0xffffffffffffffe0])) [2 c+0 S8 A64])
+        (reg:DI 4 si [ c ])) "tests/test.cc":1:27 66 {*movdi_internal}
+     (nil))
+(insn 7 4 34 (set (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -4 [0xfffffffffffffffc])) [1 i+0 S4 A32])
+        (const_int 0 [0])) "tests/test.cc":3:12 67 {*movsi_internal}
+     (nil))
+
+----------------------------------------------------------------
+
+BB: 1
+(insn 11 8 12 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                    (const_int -4 [0xfffffffffffffffc])) [1 i+0 S4 A32])
+            (const_int 9 [0x9]))) "tests/test.cc":3:18 11 {*cmpsi_1}
+     (nil))
+(jump_insn 12 11 13 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 37)
+            (pc))) "tests/test.cc":3:18 736 {*jcc}
+     (nil)
+ -> 37)
+
+----------------------------------------------------------------
+
+BB: 2
+(insn 14 13 15 (set (reg:SI 0 ax [96])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -4 [0xfffffffffffffffc])) [1 i+0 S4 A32])) "tests/test.cc":4:16 67 {*movsi_internal}
+     (nil))
+(insn 15 14 61 (set (reg:DI 0 ax [orig:82 _1 ] [82])
+        (sign_extend:DI (reg:SI 0 ax [96]))) "tests/test.cc":4:16 123 {*extendsidi2_rex64}
+     (nil))
+(insn 61 15 17 (set (reg:DI 1 dx [orig:83 _2 ] [83])
+        (mult:DI (reg:DI 0 ax [orig:82 _1 ] [82])
+            (const_int 4 [0x4]))) "tests/test.cc":4:17 182 {*leadi}
+     (nil))
+(insn 17 61 18 (set (reg/f:DI 0 ax [97])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -24 [0xffffffffffffffe8])) [2 b+0 S8 A64])) "tests/test.cc":4:17 66 {*movdi_internal}
+     (nil))
+(insn 18 17 19 (parallel [
+            (set (reg/f:DI 0 ax [orig:84 _3 ] [84])
+                (plus:DI (reg/f:DI 0 ax [97])
+                    (reg:DI 1 dx [orig:83 _2 ] [83])))
+            (clobber (reg:CC 17 flags))
+        ]) "tests/test.cc":4:17 186 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 19 frame)
+                    (const_int -24 [0xffffffffffffffe8])) [2 b+0 S8 A64])
+            (reg:DI 1 dx [orig:83 _2 ] [83]))
+        (nil)))
+(insn 19 18 20 (set (reg:SI 2 cx [orig:85 _4 ] [85])
+        (mem:SI (reg/f:DI 0 ax [orig:84 _3 ] [84]) [1 *_3+0 S4 A32])) "tests/test.cc":4:17 67 {*movsi_internal}
+     (nil))
+(insn 20 19 21 (set (reg:SI 0 ax [98])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -4 [0xfffffffffffffffc])) [1 i+0 S4 A32])) "tests/test.cc":4:23 67 {*movsi_internal}
+     (nil))
+(insn 21 20 62 (set (reg:DI 0 ax [orig:86 _5 ] [86])
+        (sign_extend:DI (reg:SI 0 ax [98]))) "tests/test.cc":4:23 123 {*extendsidi2_rex64}
+     (nil))
+(insn 62 21 23 (set (reg:DI 1 dx [orig:87 _6 ] [87])
+        (mult:DI (reg:DI 0 ax [orig:86 _5 ] [86])
+            (const_int 4 [0x4]))) "tests/test.cc":4:24 182 {*leadi}
+     (nil))
+(insn 23 62 24 (set (reg/f:DI 0 ax [99])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -32 [0xffffffffffffffe0])) [2 c+0 S8 A64])) "tests/test.cc":4:24 66 {*movdi_internal}
+     (nil))
+(insn 24 23 25 (parallel [
+            (set (reg/f:DI 0 ax [orig:88 _7 ] [88])
+                (plus:DI (reg/f:DI 0 ax [99])
+                    (reg:DI 1 dx [orig:87 _6 ] [87])))
+            (clobber (reg:CC 17 flags))
+        ]) "tests/test.cc":4:24 186 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 19 frame)
+                    (const_int -32 [0xffffffffffffffe0])) [2 c+0 S8 A64])
+            (reg:DI 1 dx [orig:87 _6 ] [87]))
+        (nil)))
+(insn 25 24 26 (set (reg:SI 1 dx [orig:89 _8 ] [89])
+        (mem:SI (reg/f:DI 0 ax [orig:88 _7 ] [88]) [1 *_7+0 S4 A32])) "tests/test.cc":4:24 67 {*movsi_internal}
+     (nil))
+(insn 26 25 27 (set (reg:SI 0 ax [100])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -4 [0xfffffffffffffffc])) [1 i+0 S4 A32])) "tests/test.cc":4:10 67 {*movsi_internal}
+     (nil))
+(insn 27 26 63 (set (reg:DI 0 ax [orig:90 _9 ] [90])
+        (sign_extend:DI (reg:SI 0 ax [100]))) "tests/test.cc":4:10 123 {*extendsidi2_rex64}
+     (nil))
+(insn 63 27 29 (set (reg:DI 4 si [orig:91 _10 ] [91])
+        (mult:DI (reg:DI 0 ax [orig:90 _9 ] [90])
+            (const_int 4 [0x4]))) "tests/test.cc":4:11 182 {*leadi}
+     (nil))
+(insn 29 63 30 (set (reg/f:DI 0 ax [101])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -16 [0xfffffffffffffff0])) [2 a+0 S8 A64])) "tests/test.cc":4:11 66 {*movdi_internal}
+     (nil))
+(insn 30 29 31 (parallel [
+            (set (reg/f:DI 0 ax [orig:92 _11 ] [92])
+                (plus:DI (reg/f:DI 0 ax [101])
+                    (reg:DI 4 si [orig:91 _10 ] [91])))
+            (clobber (reg:CC 17 flags))
+        ]) "tests/test.cc":4:11 186 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 19 frame)
+                    (const_int -16 [0xfffffffffffffff0])) [2 a+0 S8 A64])
+            (reg:DI 4 si [orig:91 _10 ] [91]))
+        (nil)))
+(insn 31 30 32 (parallel [
+            (set (reg:SI 1 dx [orig:93 _12 ] [93])
+                (plus:SI (reg:SI 1 dx [orig:89 _8 ] [89])
+                    (reg:SI 2 cx [orig:85 _4 ] [85])))
+            (clobber (reg:CC 17 flags))
+        ]) "tests/test.cc":4:19 185 {*addsi_1}
+     (nil))
+(insn 32 31 33 (set (mem:SI (reg/f:DI 0 ax [orig:92 _11 ] [92]) [1 *_11+0 S4 A32])
+        (reg:SI 1 dx [orig:93 _12 ] [93])) "tests/test.cc":4:13 67 {*movsi_internal}
+     (nil))
+(insn 33 32 49 (parallel [
+            (set (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                        (const_int -4 [0xfffffffffffffffc])) [1 i+0 S4 A32])
+                (plus:SI (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                            (const_int -4 [0xfffffffffffffffc])) [1 i+0 S4 A32])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "tests/test.cc":3:4 185 {*addsi_1}
+     (nil))
+(jump_insn 49 33 50 (set (pc)
+        (label_ref 34)) "tests/test.cc":3:4 737 {jump}
+     (nil)
+ -> 34)
+
+----------------------------------------------------------------
+
+BB: 3
+(insn 39 38 47 (set (reg/f:DI 0 ax [orig:94 _22 ] [94])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -16 [0xfffffffffffffff0])) [2 a+0 S8 A64])) "tests/test.cc":6:11 66 {*movdi_internal}
+     (nil))
+(insn 47 39 56 (use (reg/i:DI 0 ax)) "tests/test.cc":7:1 -1
+     (nil))
+(insn 57 56 58 (set (mem/v:BLK (scratch:DI) [0  A8])
+        (unspec:BLK [
+                (mem/v:BLK (scratch:DI) [0  A8])
+            ] UNSPEC_MEMORY_BLOCKAGE)) "tests/test.cc":7:1 -1
+     (nil))
+(insn/f 58 57 59 (set (reg/f:DI 6 bp)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "tests/test.cc":7:1 -1
+     (expr_list:REG_CFA_DEF_CFA (plus:DI (reg/f:DI 7 sp)
+            (const_int 8 [0x8]))
+        (nil)))
+(jump_insn 59 58 60 (simple_return) "tests/test.cc":7:1 -1
+     (nil)
+ -> simple_return)
+
+----------------------------------------------------------------
+
+BB: -1
+
+----------------------------------------------------------------
+

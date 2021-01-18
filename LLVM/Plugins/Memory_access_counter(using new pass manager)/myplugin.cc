@@ -1,13 +1,3 @@
-// Modified from:
-// https://medium.com/@mshockwave/writing-llvm-pass-in-2018-part-i-531c700e85eb
-
-// Build using:
-// clang myplugin.cc -o myplugin.so -shared -fPIC `llvm-config --cxxflags` -L`llvm-config --libnames`
-
-// Using:
-// clang -S -emit-llvm myprogram.c
-// opt -load-pass-plugin=./myplugin.so -passes="myplugin" myprogram.ll -o myprogram.bc
-// clang myprogram.bc -o myprogram
 
 #include "llvm/IR/BasicBlock.h"
 #include "llvm/IR/Instruction.h"

@@ -13,8 +13,6 @@
 #include "llvm/IR/Type.h"
 //STL libraries
 #include <vector>
-
-//llvmNamespace
 using namespace llvm;
 //=================================HEADER=======================================
 NameSpace
@@ -115,38 +113,32 @@ void Memory_access_counter::begin_profiling(Module &MOD)
             LoadInst * load = nullptr;
             StoreInst * store = nullptr;
 
-            // Setting insertion point for new instructions
             m_ir_builder->SetInsertPoint(&I);
 
-            if((load = dyn_cast<LoadInst>(&I)) != nullptr) { // Check if the current instruction is a load
+            if((load = dyn_cast<LoadInst>(&I)) != nullptr) {
               m_mem_load_counter++;
 
-              Value * address = load->getPointerOperand(); // Getting source address
+              Value * address = load->getPointerOperand();
 
-              // Constructing argument array for 'printf' function call
               std::vector<Value *> args;
               args.push_back(m_load_str_ptr);
               args.push_back(address);
-
-              // Adding 'printf' function call using the IR builder instance
               CallInst * call = m_ir_builder->CreateCall(
                 print,
                 args,
                 ""
               );
-            } else if ((store = dyn_cast<StoreInst>(&I)) != nullptr) { // Check if the current instruction is a store
+            } else if ((store = dyn_cast<StoreInst>(&I)) != nullptr) {
               m_mem_write_counter++;
 
-              Value * value = store->getValueOperand(); // Getting the value to be stored at given address
-              Value * address = store->getPointerOperand(); // Getting source address
-
-              // Constructing argument array for 'printf' function call
+              Value * value = store->getValueOperand();
+              Value * address = store->getPointerOperand();
               std::vector<Value *> args;
               args.push_back(m_write_str_ptr);
               args.push_back(value);
               args.push_back(address);
 
-              // Adding 'printf' function call using the IR builder instance
+
               CallInst * call = m_ir_builder->CreateCall(
                 print,
                 args,

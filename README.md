@@ -1,5 +1,5 @@
 # Memory profiler (read and write)
-A bunch memory profiler developed in LLVM/Clang and GCC.
+A bunch of memory profiler developed in LLVM/Clang and GCC.
 ## LLVM/Clang
 ```bash
 clang {pluginnName.cc} -o {pluginnName.so} -shared -fPIC `llvm-config --cxxflags` -L`llvm-config --libnames`

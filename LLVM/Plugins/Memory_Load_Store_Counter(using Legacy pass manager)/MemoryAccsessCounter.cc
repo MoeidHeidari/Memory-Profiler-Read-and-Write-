@@ -15,13 +15,13 @@
 #include <vector>
 using namespace llvm;
 //=================================HEADER=======================================
-NameSpace
+namespace
 {
   class Memory_access_counter : public ModulePass
   {
 //**********************************PUBLIC**************************************
   public:
-    Memory_access_counter()
+    Memory_access_counter();
 //------------------------------------------------------------------------------
     virtual bool runOnModule(Module &module);
 //------------------------------------------------------------------------------
